@@ -13,8 +13,8 @@
     (cobertura a)
 =>
     (printout t "Alimentación " crlf)
-    (printout t "a. Come carne" crlf)
-    (printout t "b. No se posee la información" crlf)
+    (printout t "a. Esta comiendo carne" crlf)
+    (printout t "b. No esta comiendo" crlf)
     (printout t "(responder a/b): ")
     (assert (alimento (read))))  
 
@@ -23,12 +23,12 @@
 ;;Pelo
     (cobertura a)
 ;;NPI
-    (alimento a)
+    (alimento b)
 =>
 
     (printout t "Que apariencia tienen? " crlf)
-    (printout t "a. Pezuñas unguladas" crlf)
-    (printout t "b. Dientes afilados " crlf)
+    (printout t "a. tiene pezuñas unguladas" crlf)
+    (printout t "b. posee dientes afilados " crlf)
     (printout t "(responder a/b): ")
     (assert (apariencia (read))))  
 
@@ -37,7 +37,7 @@
 ;;Pelo
     (cobertura a)
 ;;NPI
-    (alimento a)
+    (alimento b)
 ;;Pezuñas Unguladas
     (apariencia a)
 =>
@@ -58,11 +58,6 @@
     (assert (cobertura (read))))
 
 
-(defrule O1 "Interpretación de la opción de cobertura"
-    (cobertura a)
-=>
-    (assert (pelo)))
-
 
 ;-------------------------------------------------------------
 ;       Reglas para el S.E. de identificación de animales   |
@@ -72,12 +67,35 @@
 ;;Pelo
     (cobertura a)
 ;;NPI
-    (alimento a)
+    (alimento b)
 ;;Pezuñas Unguladas
     (apariencia a)
 ;;Sin franjas
     (franjas a)
 =>
     (printout t " Es una jirafa " crlf)
-	(assert (animal Jirafa)))
-    (facts)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+(deffunction explicaciónJirafa1()
+    (printout t "Tiene pelo" crlf)
+    (printout t "Tiene pezuñas Unguladas" crlf)
+    (printout t "No posee franjas" crlf)
+)
+
+(defrule RR1E "Jirafa Explicación 1" 
+;;Pelo
+    (cobertura a)
+;;NPI
+    (alimento b)
+;;Pezuñas Unguladas
+    (apariencia a)
+;;Sin franjas
+    (franjas a)
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónJirafa1))
+
