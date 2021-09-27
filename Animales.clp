@@ -7,6 +7,7 @@
 ;(printout t "Name a primary color" crlf)
 ;(assert (color (read))))
 
+
 ;-------------------------------------------------------------
 ;     Reglas de aplicación de las pruebas de identificación  |
 ;-------------------------------------------------------------
