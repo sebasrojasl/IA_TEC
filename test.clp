@@ -1,6 +1,6 @@
 (deftemplate animal
    (slot pelo)
-   (slot hardness)
+   (slot alimento)
    (slot density)
    (multislot colors))
 
@@ -15,11 +15,23 @@
     (assert (cobertura (read))))
 
 
-(defrule Rt2 "Test 2 de apariencia ()"
-(cobertura a)
+(defrule Rt2 "Test de comida ()"
+    (cobertura a)
 =>
-    (printout t "Opción A" crlf)
-    (assert (cobertura (read))))
+    (printout t "Alimentación " crlf)
+    (printout t "a. Come carne" crlf)
+    (printout t "b. No se posee la información" crlf)
+    (printout t "(responder a/b): ")
+    (assert (alimento (read))))  
+
+
+(defrule Rt4 "Test de apariencia ()"
+    (cobertura a)
+    (alimento a)
+=>
+
+    (printout t "Es carnivoro " crlf)
+    (assert (alimento (read))))  
 
 
 (defrule Rt3 "Test 3 de apariencia ()"
@@ -30,6 +42,6 @@
 
 
 (defrule O1 "Interpretación de la opción de cobertura"
-(cobertura a)
+    (cobertura a)
 =>
-(assert (pelo)))
+    (assert (pelo)))
