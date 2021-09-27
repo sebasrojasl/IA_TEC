@@ -1,10 +1,3 @@
-(deftemplate animal
-   (slot pelo)
-   (slot alimento)
-   (slot density)
-   (multislot colors))
-
-
 (defrule Rt1 "Test 1 de apariencia (general)"
 =>
     (printout t "Cual es la apariencia del animal?, es decir:" crlf)
@@ -16,6 +9,7 @@
 
 
 (defrule Rt2 "Test de comida ()"
+;;Pelo
     (cobertura a)
 =>
     (printout t "Alimentación " crlf)
@@ -25,16 +19,39 @@
     (assert (alimento (read))))  
 
 
-(defrule Rt4 "Test de apariencia ()"
+(defrule Rt3 "Test de apariencia Pezuñas o dientes afilados "
+;;Pelo
     (cobertura a)
+;;NPI
     (alimento a)
 =>
 
-    (printout t "Es carnivoro " crlf)
-    (assert (alimento (read))))  
+    (printout t "Que apariencia tienen? " crlf)
+    (printout t "a. Pezuñas unguladas" crlf)
+    (printout t "b. Dientes afilados " crlf)
+    (printout t "(responder a/b): ")
+    (assert (apariencia (read))))  
 
 
-(defrule Rt3 "Test 3 de apariencia ()"
+(defrule Rt5 "Test de apariencia Sin franjas o Franjas negras "
+;;Pelo
+    (cobertura a)
+;;NPI
+    (alimento a)
+;;Pezuñas Unguladas
+    (apariencia a)
+=>
+
+    (printout t "Posee franjas? De que tipo" crlf)
+    (printout t "a. No tiene franjas" crlf)
+    (printout t "b. Franjas negras " crlf)
+    (printout t "(responder a/b): ")
+    (assert (franjas (read))))  
+    
+
+
+(defrule Rt4 "Test 3 de apariencia ()"
+;;Plumas
 (cobertura b)
 =>
     (printout t "Opción B" crlf)
@@ -45,3 +62,22 @@
     (cobertura a)
 =>
     (assert (pelo)))
+
+
+;-------------------------------------------------------------
+;       Reglas para el S.E. de identificación de animales   |
+;-------------------------------------------------------------
+
+(defrule RR1 "Jirafa" 
+;;Pelo
+    (cobertura a)
+;;NPI
+    (alimento a)
+;;Pezuñas Unguladas
+    (apariencia a)
+;;Sin franjas
+    (franjas a)
+=>
+    (printout t " Es una jirafa " crlf)
+	(assert (animal Jirafa)))
+    (facts)
