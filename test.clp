@@ -33,10 +33,13 @@
     (cobertura c)
 =>
     (printout t "a. Las crias beben leche al nacer" crlf)
-    (printout t "b. Las crias nacen por mediod e huevos" crlf)
+    (printout t "b. Las crias nacen por medio de huevos" crlf)
     (printout t "c. No se sabe/ No tiene Crias" crlf)
     (printout t "(responder a/b/c): ")
     (assert (crias (read))))
+
+
+
 
 (defrule QPatas "Cantidad de patas ()"
 ;;Plumas
@@ -72,6 +75,26 @@
     (printout t "b. posee dientes afilados " crlf)
     (printout t "(responder a/b): ")
     (assert (apariencia (read))))  
+
+;;;;;;;;;;;;;;;;;;
+
+(defrule AparienciaMamiferos1 "Test de apariencia Pezuñas o dientes afilados "
+;;Pelo
+    (cobertura c)
+;; Crias
+    (crias a)
+=>
+
+    (printout t "Que apariencia tienen? " crlf)
+    (printout t "a. tiene pezuñas unguladas" crlf)
+    (printout t "b. posee dientes afilados " crlf)
+    (printout t "(responder a/b): ")
+    (assert (apariencia (read)))) 
+
+
+
+
+;;;;;;;;;;;;;;;;;;;
 
 
 (defrule Rt5 "Test de apariencia Sin franjas o Franjas negras "
