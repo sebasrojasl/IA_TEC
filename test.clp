@@ -28,7 +28,15 @@
     (printout t "(responder a/b): ")
     (assert (volar (read))))  
 
-
+(defrule Crias "Test de Crias ()"
+;; NPI
+    (cobertura c)
+=>
+    (printout t "a. Las crias beben leche al nacer" crlf)
+    (printout t "b. Las crias nacen por mediod e huevos" crlf)
+    (printout t "c. No se sabe/ No tiene Crias" crlf)
+    (printout t "(responder a/b/c): ")
+    (assert (crias (read))))
 
 (defrule QPatas "Cantidad de patas ()"
 ;;Plumas
@@ -49,7 +57,7 @@
 =>
     (printout t "Velocidad maxima" crlf)
     (assert (velocidad (read))))
-     
+
 
 
 (defrule Rt3 "Test de apariencia Pezuñas o dientes afilados "
@@ -167,3 +175,32 @@
     (explicar a)
 =>
     (explicaciónCebra1))
+
+
+(defrule Desconocido1 "Desconocido" 
+;;Pelo
+    (cobertura c)
+;;NPI
+    (crias c)
+=>
+    (printout t " Es un animal desconocido " crlf)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+(deffunction explicaciónUnk1()
+    (printout t "No se puede apreciar bien la cobertura del animal" crlf)
+    (printout t "No se posee información sobre las crias" crlf)
+    (printout t "Por lo tanto es un animal desconocido" crlf)
+)
+
+(defrule UnkExp1 "Desconocido Explicación 1" 
+;;Pelo
+    (cobertura c)
+;;NPI
+    (crias c)
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónUnk1))
