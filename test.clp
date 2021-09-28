@@ -61,7 +61,28 @@
     (printout t "Velocidad maxima" crlf)
     (assert (velocidad (read))))
 
+;;;;;;;;;;;;;;;;;;
 
+(defrule InterAparienciaMamifero "Intermedio de Apariencia de mamiferos para solucionar incongruencias"
+;;Pelo
+    (cobertura c)
+;; Crias
+    (crias a)
+=>
+    (assert (cobertura a) (alimento b) )) 
+
+;;;;;;;;;;;;;;;;;;;
+
+(defrule InterAparienciaNoMamifero "Intermedio de Apariencia de no mamiferos para solucionar incongruencias"
+;;Pelo
+    (cobertura c)
+;; Crias
+    (crias b)
+=>
+    (assert (cobertura b))) 
+
+
+;;;;;;;;;;;;;;;;;;;
 
 (defrule Rt3 "Test de apariencia Pezuñas o dientes afilados "
 ;;Pelo
@@ -76,25 +97,7 @@
     (printout t "(responder a/b): ")
     (assert (apariencia (read))))  
 
-;;;;;;;;;;;;;;;;;;
 
-(defrule AparienciaMamiferos1 "Test de apariencia Pezuñas o dientes afilados "
-;;Pelo
-    (cobertura c)
-;; Crias
-    (crias a)
-=>
-
-    (printout t "Que apariencia tienen? " crlf)
-    (printout t "a. tiene pezuñas unguladas" crlf)
-    (printout t "b. posee dientes afilados " crlf)
-    (printout t "(responder a/b): ")
-    (assert (apariencia (read)))) 
-
-
-
-
-;;;;;;;;;;;;;;;;;;;
 
 
 (defrule Rt5 "Test de apariencia Sin franjas o Franjas negras "
@@ -199,6 +202,7 @@
 =>
     (explicaciónCebra1))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defrule Desconocido1 "Desconocido" 
 ;;Pelo
@@ -227,3 +231,6 @@
     (explicar a)
 =>
     (explicaciónUnk1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
