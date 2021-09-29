@@ -19,6 +19,20 @@
     (assert (alimento (read))))  
 
 
+(defrule AparienciaCarnivoro "Test de Apariencia Carnivoro ()"
+;;Pelo
+    (cobertura a)
+
+;;Alimentacion
+    (cobertura b )
+=>
+    (printout t "Apariencia " crlf)
+    (printout t "a. manchas_oscuras" crlf)
+    (printout t "b. franjas_negras" crlf)
+    (printout t "(responder a/b): ")
+    (assert (Apariencia (read))))  
+
+
 (defrule CapacidadVuelo "Capacidad de Vuelo ()"
 ;;Plumas
     (cobertura b)
@@ -201,6 +215,87 @@
     (explicar a)
 =>
     (explicaciónCebra1))
+
+
+(defrule AG1 "Leopardo" 
+;;Pelo
+    (cobertura a)
+;;NPI
+    (alimento a)
+;;Manchas Oscuras
+    (apariencia a)
+;;Sin franjas
+    (franjas a)
+=>
+    (printout t " Es un Leopardo " crlf)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+(deffunction explicaciónLeopardo1()
+    (printout t "Tiene pelo" crlf)
+    (printout t "Come carne" crlf)
+    (printout t "Tiene dientes afilados" crlf)
+    (printout t "Tiene manchas oscuras" crlf)
+    (printout t "No posee franjas" crlf)
+)
+
+(defrule AG1E "Leopardo Explicación 1" 
+;;Pelo
+    (cobertura a)
+;;NPI
+    (alimento a)
+;;Dientes afilados
+    (apariencia b)
+;;Manchas Oscuras
+    (manchas_oscuras a)
+;;Sin franjas
+    (franjas a)
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónLeopardo1))
+
+(defrule AG2 "Tigre" 
+;;Pelo
+    (cobertura a)
+;;NPI
+    (alimento a)
+;;Manchas Oscuras
+    (apariencia b)
+;;Sin franjas
+    (franjas b)
+=>
+    (printout t " Es un Tigre " crlf)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+(deffunction explicaciónTigre1()
+    (printout t "Tiene pelo" crlf)
+    (printout t "Come carne" crlf)
+    (printout t "Tiene dientes afilados" crlf)
+    (printout t "No tiene manchas oscuras" crlf)
+    (printout t "Posee franjas" crlf)
+)
+
+(defrule AG2E "Tigre Explicación 1" 
+;;Pelo
+    (cobertura a)
+;;NPI
+    (alimento a)
+;;Dientes afilados
+    (apariencia b)
+;;sin Manchas Oscuras
+    (manchas_oscuras b)
+;;Con franjas
+    (franjas b)
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónTigre1))    
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
