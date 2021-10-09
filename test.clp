@@ -5,12 +5,16 @@
     (printout t "b. tiene plumas?" crlf)
     (printout t "c. no se aprecia bien" crlf)
     (printout t "(responder a/b/c): ")
-    (assert (cobertura (read))))
+    (assert (cobertura (read))
+            (termino no)
+    ))
 
 
 (defrule Rt2 "Test de Alimentación ()"
 ;;Pelo
     (cobertura a)
+
+    (termino no)
 =>
     (printout t "Alimentación " crlf)
     (printout t "a. Esta comiendo carne" crlf)
@@ -40,16 +44,6 @@
 
 
 
-
-(defrule QPatas "Cantidad de patas ()"
-;;Plumas
-    (cobertura b)
-
-;;Vuela
-    (volar a )
-=>
-    (printout t "Cantidad de patas" crlf)
-    (assert (patas (read))))
 
 (defrule VelMax "Velocidad maxima ()"
 ;;Plumas
@@ -114,6 +108,20 @@
     (printout t "b. Franjas negras " crlf)
     (printout t "(responder a/b): ")
     (assert (franjas (read))))  
+
+
+(defrule QPatas "Cantidad de patas ()"
+;;Plumas
+    (cobertura b)
+
+;;Vuela
+    (volar a )
+=>
+    (printout t " Cuantas patas tiene? " crlf)
+    (printout t "a. Más de 2" crlf)
+    (printout t "b. 2 patas" crlf)
+    (assert (patas (read))))
+
     
 
 (defrule Rt4 "Test 3 de apariencia ()"
@@ -143,7 +151,10 @@
 	(printout t "Desea ver la explicación ?" crlf)
     (printout t "a. Sí" crlf)
     (printout t "b. No" crlf)
-    (assert (explicar (read))))
+    (assert (explicar (read))
+            (termino si)
+    )
+)
 
 (deffunction explicaciónJirafa1()
     (printout t "Tiene pelo" crlf)
@@ -233,4 +244,48 @@
     (explicaciónUnk1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Salandra
+
+
+(defrule Salamandra1 "Salamandra1 ()"
+;;Otra
+    (cobertura c)
+
+;;Vuela
+    (volar a )
+
+;;+2patas
+    (patas a )
+=>
+    (printout t " Es una Salamandra " crlf)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+
+(deffunction explicaciónSalamandra1()
+    (printout t "Pone huevos" crlf)
+    (printout t "No vuela" crlf)
+    (printout t "Posee más de dos patas" crlf)
+)
+
+(defrule SalamandraExp1 "Salamandra Explicación 1" 
+;;Plumas
+    (cobertura b)
+;;Vuela
+    (volar a )
+;;+2patas
+    (patas a )
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónSalamandra1))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
