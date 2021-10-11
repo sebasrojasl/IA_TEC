@@ -178,7 +178,7 @@
 ) 
 
 
-(defrule Rt5 "Test de apariencia Sin franjas o Franjas negras "
+(defrule Franjas "Test de apariencia Sin franjas o Franjas negras "
 ;;Pezuñas Unguladas
     (apariencia a)
 =>
@@ -189,7 +189,7 @@
     (printout t "(responder a/b): ")
     (assert (franjas (read))))  
 
-(defrule Rt5 "Test de apariencia carnivoros "
+(defrule Carnivoros "Test de apariencia carnivoros "
 ;;carnivoros
     (carnivoros a)
 =>
