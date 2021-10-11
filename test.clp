@@ -57,7 +57,7 @@
     (cobertura c)
 =>
     (printout t "a. Las crias estan bebiendo leche?" crlf)
-    (printout t "b. Las crias estan por medio de huevos?" crlf)
+    (printout t "b. Las crias nacen por medio de huevos?" crlf)
     (printout t "c. No se sabe/ No tiene Crias" crlf)
     (printout t "(responder a/b/c): ")
     (assert (crias (read))))
@@ -83,7 +83,7 @@
 ;; NPI Crias
     (crias c)
 =>
-    (printout t "Test de habitat" crlf)
+    ;;(printout t "Test de habitat" crlf)
     (printout t "a. Se encuentra en un lugar seco?" crlf)
     (printout t "b. Se encuentra en un lugar humedo?" crlf)
     (printout t "c. El lugar no es del todo claro" crlf)
